@@ -1,11 +1,11 @@
 <div class="container mx-auto p-4">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <!-- Lista de robots en cards -->
+        <!-- Lista de categorias en cards -->
         <div *ngFor="let category of categories" class="card bg-base-100 shadow-xl">
             <div class="card-body">
-                <!-- Nombre del robot -->
+                <!-- Nombre de la categoria -->
                 <h2 class="card-title">Category: {{ category.name }}</h2>
-                <!-- Descripción del robot -->
+                <!-- Descripción de la categoria -->
                 <p>{{ category.description }}</p>
 
                 <!-- Botones de acciones -->
@@ -25,16 +25,16 @@
         </div>
     </div>
 
-    <!-- Botón para crear un nuevo robot -->
+    <!-- Botón para crear una nueva categoria -->
     <div class="flex justify-center mt-4">
-        <button class="btn btn-primary btn-lg" (click)="createModal.showModal()">Create New Robot</button>
+        <button class="btn btn-primary btn-lg" (click)="createModal.showModal()">Create New Category</button>
     </div>
 
-    <!-- Modal para eliminar un robot -->
+    <!-- Modal para eliminar una categoria -->
     <dialog #deleteModal id="deleteModal" class="modal">
         <div class="modal-box">
-            <h3 class="text-lg font-bold">Delete Robot</h3>
-            <p>Are you sure you want to delete the robot <strong>{{ selectedCategory?.name }}</strong>?</p>
+            <h3 class="text-lg font-bold">Delete Category</h3>
+            <p>Are you sure you want to delete the category <strong>{{ selectedCategory?.name }}</strong>?</p>
             <div class="modal-action">
                 <button class="btn btn-secondary" (click)="deleteModal.close()">Cancel</button>
                 <button class="btn btn-error" (click)="deleteCategory()">Delete</button>
@@ -42,7 +42,7 @@
         </div>
     </dialog>
 
-    <!-- Modal para actualizar un robot -->
+    <!-- Modal para actualizar una categoria -->
     <dialog #updateModal id="updateModal" class="modal">
         <div class="modal-box">
             <h3 class="text-lg font-bold">Update Category</h3>
@@ -52,7 +52,7 @@
                         <span class="label-text">Category Name</span>
                     </label>
                     <input type="text" class="input input-bordered" [(ngModel)]="selectedCategory.name"
-                        name="botname" />
+                        name="categoryname" />
                 </div>
                 <div class="form-control mb-3">
                     <label class="label">
@@ -69,7 +69,7 @@
         </div>
     </dialog>
 
-    <!-- Modal para crear un nuevo robot -->
+    <!-- Modal para crear una nueva categoria -->
     <dialog #createModal id="createModal" class="modal">
         <div class="modal-box">
             <h3 class="text-lg font-bold">Create New Category</h3>
@@ -78,7 +78,7 @@
                     <label class="label">
                         <span class="label-text">Category Name</span>
                     </label>
-                    <input type="text" class="input input-bordered" [(ngModel)]="createCategoryRequest.name" name="botname"
+                    <input type="text" class="input input-bordered" [(ngModel)]="createCategoryRequest.name" name="categoryname"
                         required />
                 </div>
                 <div class="form-control mb-3">
@@ -91,7 +91,7 @@
             </form>
             <div class="modal-action">
                 <button class="btn btn-secondary" (click)="createModal.close()">Cancel</button>
-                <button class="btn btn-primary" (click)="createCategory()">Create Robot</button>
+                <button class="btn btn-primary" (click)="createCategory()">Create Category</button>
             </div>
         </div>
     </dialog>
