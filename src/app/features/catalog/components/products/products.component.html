@@ -1,0 +1,122 @@
+<div class="container mx-auto p-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Lista de robots en cards -->
+        <div *ngFor="let product of products" class="card bg-base-100 shadow-xl">
+            <div class="card-body">
+                <img [src]="product.image_url" alt="Product Image" class="w-full h-full object-cover"/>
+                <h2 class="card-title">{{ product.name }}</h2>
+                <p>Price: S/{{ product.price }}</p>
+                <p>{{ product.description }}</p>
+
+                <div class="card-actions flex flex-wrap gap-2">
+                    <button class="btn btn-error flex-1" (click)="selectProduct(product); deleteModal.showModal()">
+                        Delete
+                    </button>
+                    <button class="btn btn-warning flex-1" (click)="selectProduct(product); updateModal.showModal()">
+                        Update
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón para crear un nuevo robot -->
+    <div class="flex justify-center mt-4">
+        <button class="btn btn-primary btn-lg" (click)="createModal.showModal()">Create New Product</button>
+    </div>
+
+    <!-- Modal para eliminar un robot -->
+    <dialog #deleteModal id="deleteModal" class="modal">
+        <div class="modal-box">
+            <h3 class="text-lg font-bold">Delete Product</h3>
+            <p>Are you sure you want to delete the Product <strong>{{ selectedProduct?.name }}</strong>?</p>
+            <div class="modal-action">
+                <button class="btn btn-secondary" (click)="deleteModal.close()">Cancel</button>
+                <button class="btn btn-error" (click)="deleteProduct()">Delete</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Modal para actualizar un robot -->
+    <dialog #updateModal id="updateModal" class="modal">
+        <div class="modal-box">
+            <h3 class="text-lg font-bold">Update Product</h3>
+            <form *ngIf="selectedProduct">
+                <div class="form-control mb-3">
+                    <label class="label">
+                        <span class="label-text">Name</span>
+                    </label>
+                    <input type="text" class="input input-bordered" [(ngModel)]="selectedProduct.name"
+                        name="name" />
+                </div>
+                <div class="form-control mb-3">
+                    <label class="label">
+                        <span class="label-text">Description</span>
+                    </label>
+                    <textarea class="textarea textarea-bordered" [(ngModel)]="selectedProduct.description"
+                        name="description"></textarea>
+                </div>
+                <div class="form-control mb-3">
+                    <label class="label">
+                        <span class="label-text">Price</span>
+                    </label>
+                    <input type="number" class="input input-bordered" [(ngModel)]="selectedProduct.price"
+                        name="price" />
+                </div>
+                <div class="form-control mb-3">
+                    <label class="label">
+                        <span class="label-text">Image Url</span>
+                    </label>
+                    <input type="text" class="input input-bordered" [(ngModel)]="selectedProduct.image_url"
+                        name="image-url" />
+                </div>
+            </form>
+            <div class="modal-action">
+                <button class="btn btn-secondary" (click)="updateModal.close()">Close</button>
+                <button class="btn btn-primary" (click)="updateProduct()">Save Changes</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Modal para crear un nuevo robot -->
+    <dialog #createModal id="createModal" class="modal">
+        <div class="modal-box">
+            <h3 class="text-lg font-bold">Create New Product</h3>
+            <form>
+                <div class="form-control mb-3">
+                    <label class="label">
+                        <span class="label-text">Name</span>
+                    </label>
+                    <input type="text" class="input input-bordered" [(ngModel)]="createProductRequest.name" name="botname"
+                        required />
+                </div>
+                <div class="form-control mb-3">
+                    <label class="label">
+                        <span class="label-text">Description</span>
+                    </label>
+                    <textarea class="textarea textarea-bordered" [(ngModel)]="createProductRequest.description"
+                        name="description" required></textarea>
+                </div>
+                <div class="form-control mb-3">
+                    <label class="label">
+                        <span class="label-text">Price</span>
+                    </label>
+                    <input type="number" class="input input-bordered" [(ngModel)]="createProductRequest.price"
+                        name="image-url" />
+                </div>
+                <div class="form-control mb-3">
+                    <label class="label">
+                        <span class="label-text">Image Url</span>
+                    </label>
+                    <input type="text" class="input input-bordered" [(ngModel)]="createProductRequest.image_url"
+                        name="image-url" />
+                </div>
+
+            </form>
+            <div class="modal-action">
+                <button class="btn btn-secondary" (click)="createModal.close()">Cancel</button>
+                <button class="btn btn-primary" (click)="createProduct()">Create Robot</button>
+            </div>
+        </div>
+    </dialog>
+</div>

@@ -1,0 +1,30 @@
+<div class="navbar bg-neutral text-neutral-content items-center p-4">
+    <a [routerLink]="'/categories'" class="btn btn-ghost text-xl">ServoSync</a>
+    <!-- Espaciado flexible para mover el dropdown al extremo derecho -->
+    <div class="ml-auto dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn m-1">
+            Theme
+            <svg width="12px" height="12px" class="inline-block h-2 w-2 fill-current opacity-60"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
+                <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
+            </svg>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-neutral rounded-box w-36">
+            <li>
+                <input type="radio" name="theme-dropdown"
+                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Light"
+                    value="light" (change)="changeTheme($event)" />
+            </li>
+            <li>
+                <input type="radio" name="theme-dropdown"
+                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Dark"
+                    value="dark" (change)="changeTheme($event)" />
+            </li>
+            <li>
+                <input type="radio" name="theme-dropdown"
+                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Retro"
+                    value="retro" (change)="changeTheme($event)" />
+            </li>
+        </ul>
+    </div>
+</div>
